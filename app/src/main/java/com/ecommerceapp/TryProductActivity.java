@@ -32,6 +32,7 @@ import com.google.ar.sceneform.ux.TransformationSystem;
 public class TryProductActivity extends AppCompatActivity {
     private ArFragment arFragment;
     private Uri object;
+
     private String category, name;
     private Session arSesson;
     private Config arConfig;
