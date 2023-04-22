@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.ar.core.Anchor;
+import com.google.ar.core.ArCoreApk;
 import com.google.ar.core.Config;
 import com.google.ar.core.HitResult;
 import com.google.ar.core.Plane;
@@ -18,6 +19,7 @@ import com.google.ar.core.exceptions.UnavailableApkTooOldException;
 import com.google.ar.core.exceptions.UnavailableArcoreNotInstalledException;
 import com.google.ar.core.exceptions.UnavailableDeviceNotCompatibleException;
 import com.google.ar.core.exceptions.UnavailableSdkTooOldException;
+import com.google.ar.core.exceptions.UnavailableUserDeclinedInstallationException;
 import com.google.ar.sceneform.AnchorNode;
 import com.google.ar.sceneform.SceneView;
 import com.google.ar.sceneform.math.Vector3;
@@ -41,6 +43,44 @@ public class TryProductActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_try_product);
+        boolean installRequested = false;
+        ArCoreApk.InstallStatus installStatus = null;
+        try {
+            installStatus = ArCoreApk.getInstance().requestInstall(this, !installRequested);
+        } catch (UnavailableDeviceNotCompatibleException e) {
+            e.printStackTrace();
+        } catch (UnavailableUserDeclinedInstallationException e) {
+            e.printStackTrace();
+        }
+        switch(installStatus) {
+            case INSTALLED:
+                // Create a new ARCore session
+                Session session = null;
+                try {
+                    session = new Session(this);
+                } catch (UnavailableArcoreNotInstalledException e) {
+                    e.printStackTrace();
+                } catch (UnavailableApkTooOldException e) {
+                    e.printStackTrace();
+                } catch (UnavailableSdkTooOldException e) {
+                    e.printStackTrace();
+                } catch (UnavailableDeviceNotCompatibleException e) {
+                    e.printStackTrace();
+                }
+
+                // Enable both horizontal and vertical plane detection
+                Config config = new Config(session);
+                config.setPlaneFindingMode(Config.PlaneFindingMode.HORIZONTAL_AND_VERTICAL);
+                session.configure(config);
+
+                // Create an ARCore session object
+                 arSesson = session;
+                break;
+            // Handle other installation status cases
+            // ...
+        }
+
+
 
         category = getIntent().getStringExtra("category");
         name = getIntent().getStringExtra("name");
@@ -91,6 +131,14 @@ public class TryProductActivity extends AppCompatActivity {
         });
 
     }
+    public void onPlaneDetected(Plane plane) {
+        if (plane.getType() == Plane.Type.VERTICAL) {
+            // Handle vertical plane detection events
+        }
+        else {
+            // Handle horizontal plane detection events
+        }
+    }
 
     private void placeObject(ArFragment arFragment, Anchor anchor, Uri model) {
 
@@ -116,7 +164,7 @@ public class TryProductActivity extends AppCompatActivity {
                 arFragment.getTransformationSystem());
 
             //transformableNode.getScaleController().setMaxScale(0.09f);
-            transformableNode.getScaleController().setMinScale(0.05f);
+            transformableNode.getScaleController().setMinScale(0.07f);
 
             transformableNode.setRenderable(renderable);
             transformableNode.setParent(anchorNode);

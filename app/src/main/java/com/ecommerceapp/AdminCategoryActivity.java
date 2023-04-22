@@ -11,8 +11,9 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 
 public class AdminCategoryActivity extends AppCompatActivity {
-    private ImageView shirtImg, tshirtImg, ladiesDressImg, glassesImg, shoeImg, headPhoneImg,
-            jacketImg, purseImg, watchImg, laptopImg, mobileImg, hatImg;
+//    private ImageView shirtImg, tshirtImg, ladiesDressImg, glassesImg, shoeImg, headPhoneImg,
+//            jacketImg, purseImg, watchImg, laptopImg, mobileImg, hatImg;
+    private ImageView shirtImg, tshirtImg, ladiesDressImg, jacketImg, laptopImg;
     private Toolbar toolbar;
 
 
@@ -34,15 +35,15 @@ public class AdminCategoryActivity extends AppCompatActivity {
         shirtImg = findViewById(R.id.shirt_img);
         tshirtImg = findViewById(R.id.t_shirt_img);
         ladiesDressImg = findViewById(R.id.ladies_dress_img);
-        glassesImg = findViewById(R.id.glasses_img);
-        shoeImg = findViewById(R.id.shoe_img);
+//        glassesImg = findViewById(R.id.glasses_img);
+//        shoeImg = findViewById(R.id.shoe_img);
         jacketImg = findViewById(R.id.jacket_img);
-        headPhoneImg = findViewById(R.id.headphone_img);
-        purseImg = findViewById(R.id.purse_img);
-        watchImg = findViewById(R.id.watch_img);
+//        headPhoneImg = findViewById(R.id.headphone_img);
+//        purseImg = findViewById(R.id.purse_img);
+//        watchImg = findViewById(R.id.watch_img);
         laptopImg = findViewById(R.id.laptop_img);
-        mobileImg = findViewById(R.id.phone_img);
-        hatImg = findViewById(R.id.hat_img);
+//        mobileImg = findViewById(R.id.phone_img);
+//        hatImg = findViewById(R.id.hat_img);
     }
     public void addProduct(View v){
         String tag=v.getTag().toString();

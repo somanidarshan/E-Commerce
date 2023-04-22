@@ -110,10 +110,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         dbRef.child("products").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
+                int i=0;
                 for (DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
+                    i++;
                     Products p=dataSnapshot1.getValue(Products.class);
-                    list.add(p);
+//                    if(i==2 || i==3 || i==6 || i==7 || i==8) {
+//                        Toast.makeText(MainActivity.this, ""+p.getCategory(), Toast.LENGTH_SHORT).show();
+//                        list.add(p);
+//                    }
+                       list.add(p);
+
                 }
                 adapter=new RecyclerAdapter(MainActivity.this,list);
                 recyclerView.setAdapter(adapter);
