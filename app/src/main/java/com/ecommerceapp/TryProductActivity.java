@@ -1,6 +1,7 @@
 package com.ecommerceapp;
 
 import android.net.Uri;
+import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -92,18 +93,20 @@ public class TryProductActivity extends AppCompatActivity {
 
     private void placeObject(ArFragment arFragment, Anchor anchor, Uri model) {
 
-        ModelRenderable.builder().setSource(arFragment.getContext(), model).build()
-                .thenAccept(
-                        renderable -> addNodeToScene(arFragment, anchor, renderable))
-                .exceptionally(throwable -> {
-                    AlertDialog.Builder builder =
-                            new AlertDialog.Builder(this);
-                    builder.setMessage(throwable.getMessage())
-                            .setTitle("Error");
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
-                    return null;
-                });
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            ModelRenderable.builder().setSource(arFragment.getContext(), model).build()
+                    .thenAccept(
+                            renderable -> addNodeToScene(arFragment, anchor, renderable))
+                    .exceptionally(throwable -> {
+                        AlertDialog.Builder builder =
+                                new AlertDialog.Builder(this);
+                        builder.setMessage(throwable.getMessage())
+                                .setTitle("Error");
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                        return null;
+                    });
+        }
     }
 
     private void addNodeToScene(ArFragment arFragment, Anchor anchor, Renderable renderable) {
