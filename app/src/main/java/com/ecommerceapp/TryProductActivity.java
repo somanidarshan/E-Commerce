@@ -5,9 +5,10 @@ import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.MotionEvent;
-import android.widget.ImageView;
 import android.widget.Toast;
+
 
 import com.google.ar.core.Anchor;
 import com.google.ar.core.ArCoreApk;
@@ -21,15 +22,11 @@ import com.google.ar.core.exceptions.UnavailableDeviceNotCompatibleException;
 import com.google.ar.core.exceptions.UnavailableSdkTooOldException;
 import com.google.ar.core.exceptions.UnavailableUserDeclinedInstallationException;
 import com.google.ar.sceneform.AnchorNode;
-import com.google.ar.sceneform.SceneView;
-import com.google.ar.sceneform.math.Vector3;
 import com.google.ar.sceneform.rendering.ModelRenderable;
 import com.google.ar.sceneform.rendering.Renderable;
 import com.google.ar.sceneform.ux.ArFragment;
 import com.google.ar.sceneform.ux.BaseArFragment;
-import com.google.ar.sceneform.ux.PlaneDiscoveryController;
 import com.google.ar.sceneform.ux.TransformableNode;
-import com.google.ar.sceneform.ux.TransformationSystem;
 
 public class TryProductActivity extends AppCompatActivity {
     private ArFragment arFragment;
@@ -79,8 +76,6 @@ public class TryProductActivity extends AppCompatActivity {
             // Handle other installation status cases
             // ...
         }
-
-
 
         category = getIntent().getStringExtra("category");
         name = getIntent().getStringExtra("name");
@@ -155,6 +150,7 @@ public class TryProductActivity extends AppCompatActivity {
                         dialog.show();
                         return null;
                     });
+
         }
     }
 
@@ -173,3 +169,7 @@ public class TryProductActivity extends AppCompatActivity {
 
     }
 }
+/*
+>>Manak need to be removed
+>> Keep Clothing wala stuff and other whose sfb files are working for that particular product.
+ */

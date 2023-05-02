@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.menu_nav_btn);
-        getSupportActionBar().setTitle("Shop Online");
+        getSupportActionBar().setTitle("Style Craze");
 
         dbRef = FirebaseDatabase.getInstance().getReference();
 
