@@ -170,6 +170,6 @@ public class TryProductActivity extends AppCompatActivity {
     }
 }
 /*
->>Manak need to be removed
+>> Manak need to be removed
 >> Keep Clothing wala stuff and other whose sfb files are working for that particular product.
  */

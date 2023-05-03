@@ -114,12 +114,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 for (DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
                     i++;
                     Products p=dataSnapshot1.getValue(Products.class);
-//                    if(i==2 || i==3 || i==6 || i==7 || i==8) {
-//                        Toast.makeText(MainActivity.this, ""+p.getCategory(), Toast.LENGTH_SHORT).show();
-//                        list.add(p);
-//                    }
-                       list.add(p);
-
+                    System.out.println(i+"Category name"+ p.getCategory()+p.getName());
+                    if( i==2
+                            || i==3
+                            || i==7
+                            || i==11
+                            ||i==12
+                            ||i==13
+                            || i==24
+                            || i==19
+                            || i==23
+                            || i==31
+                            || i==20
+                    ) {
+                        list.add(p);
+                    }
                 }
                 adapter=new RecyclerAdapter(MainActivity.this,list);
                 recyclerView.setAdapter(adapter);
